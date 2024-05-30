@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Home</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}" class="active">Home</a>
+        <br>
+        <a href="{% url 'per_profile' %}">Profile Update</a>
+        <br>
+        <a href="{% url 'cp' %}">Change Password</a>
+        <br>
+        <a href="{% url 'logout' %}">Log-Out</a>
+    </div>
+    <h1>Welcome to the Personal Home Page :- {{ private_details.name }} {{ private_details.lastname }}</h1>
+</body>
+</html>
+

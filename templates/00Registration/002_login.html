@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div>
+        <div>
+            <form method="post" name="signup">
+                <h1> Personal User Login</h1>
+                {% csrf_token %}
+                <div>
+                    <div>
+                        <label>Mobile No.</label>
+                        <input type="tel" name="umobile" placeholder="Enter Your Mobile No." required>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Enter Password" required>
+                    </div>
+                </div>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+    
+    
+    <!--That Is For Redirect The Page After login And Registration-->
+    {% if error == "no" %}
+    <script>
+        alert('Login Done');
+        {% if user.is_personal %}
+            window.location.href = '{% url "Per_home" %}';
+        {% else %}
+            window.location.href = '{% url "business_home" %}';
+        {% endif %}
+    </script>
+{% elif error == "yes" %}
+    <script>
+        alert('Invalid credentials');
+    </script>
+{% endif %}
+    
+    <!--That Is For Baclword And Forword Arrow-->
+    <script>
+        window.onload = function() {
+            history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.pushState(null, null, location.href);
+            };
+        };
+    </script>
+</body>
+</html>
+

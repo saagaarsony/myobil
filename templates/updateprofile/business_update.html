@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Update</title>
+</head>
+<body>
+    <h1>Business Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ log_business.name }}"><br>
+        
+        <label for="lastname">Lastname:</label><br>
+        <input type="text" id="lastname" name="lastname" value="{{ log_business.lastname }}"><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ log_business.email }}"><br>
+        
+        <label for="mobile">Mobile:</label><br>
+        <input type="text" id="mobile" name="mobile" value="{{ log_business.mobile }}"><br>
+        
+        <label for="gst">GST:</label><br>
+        <input type="text" id="gst" name="gst" value="{{ log_business.gst }}"><br>
+        
+        <label for="tag">Tag:</label><br>
+        <input type="text" id="tag" name="tag" value="{{ log_business.tag }}"><br>
+        
+        <label for="dis">Description:</label><br>
+        <textarea id="dis" name="dis">{{ log_business.dis }}</textarea><br>
+        
+        <label for="category">Category:</label><br>
+        <input type="text" id="category" name="category" value="{{ log_business.category }}"><br>
+        
+        <label for="add">Address:</label><br>
+        <textarea id="add" name="add">{{ log_business.add }}</textarea><br>
+        
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city" value="{{ log_business.city }}"><br>
+        
+        <label for="country">Country:</label><br>
+        <input type="text" id="country" name="country" value="{{ log_business.country }}"><br>
+        
+        <label for="pin">PIN:</label><br>
+        <input type="text" id="pin" name="pin" value="{{ log_business.pin }}"><br>
+        
+        <input type="file" id="logo" name="logo"> <br>
+        {% if log_business.logo %}
+        <img src="{{ log_business.logo.url }}" alt="Logo" style="width: 80px; height: 80px;">
+        {% endif %}
+    </div>    
+        <input type="submit" value="Update">
+    </form>
+    
+</body>
+</html>

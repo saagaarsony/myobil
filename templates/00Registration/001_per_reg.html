@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Registration</title>
+</head>
+<body>
+    <h1>Personal Registration</h1>
+
+    <form method="post" enctype="multipart/form-data" action="{% url 'per_reg' %}">
+        {% csrf_token %}
+        
+        {% if errors.general %}
+            <div style="color: red;">{{ errors.general }}</div>
+        {% endif %}
+    
+        <div>
+            <label for="name">First Name:</label>
+            <input type="text" id="name" name="name" value="{{ name|default_if_none:'' }}" required>
+            {% if errors.name %}
+                <span style="color: red;">{{ errors.name }}</span>
+            {% endif %}
+        </div>
+    
+        <div>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" value="{{ lastname|default_if_none:'' }}" required>
+            {% if errors.lastname %}
+                <span style="color: red;">{{ errors.lastname }}</span>
+            {% endif %}
+        </div>
+    
+        <div>
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" name="pwd" required>
+            {% if errors.pwd %}
+                <span style="color: red;">{{ errors.pwd }}</span>
+            {% endif %}
+        </div>
+    
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ email|default_if_none:'' }}" required>
+            {% if errors.email %}
+                <span style="color: red;">{{ errors.email }}</span>
+            {% endif %}
+        </div>
+    
+        <div>
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile" value="{{ mobile|default_if_none:'' }}" required>
+            {% if errors.mobile %}
+                <span style="color: red;">{{ errors.mobile }}</span>
+            {% endif %}
+        </div>
+    
+        <div>
+            <label for="profile">Profile Picture:</label>
+            <input type="file" id="profile" name="profile">
+        </div>
+    
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    
+    <!-- Display error messages here -->
+{% if error == "no" %}
+<script>
+    alert('Registration Done');
+    window.location = ('{% url 'login' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong!');
+</script>
+{% endif %}
+
+<!--That Is For Baclword And Forword Arrow-->
+<script>
+    window.onload = function() {
+
+        history.pushState(null, null, location.href);
+
+        window.onpopstate = function() {
+    
+            history.pushState(null, null, location.href);
+    
+        };
+    };
+</script>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        var mobileInput = document.getElementById('mobile').value;
+        var mobilePattern = /^[0-9]{10}$/;
+        
+        if (!mobilePattern.test(mobileInput)) {
+            alert('Please enter a valid 10-digit mobile number.');
+            event.preventDefault(); 
+        }
+    });
+</script>
+</body>
+</html>
+
